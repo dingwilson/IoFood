@@ -14,15 +14,11 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var firebaseRef = Firebase(url:"https://iofood.firebaseio.com/items")
-    
     var lastReadValue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getData()
-        
+
         view.backgroundColor = UIColor.blackColor()
         captureSession = AVCaptureSession()
         
@@ -62,10 +58,6 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
         captureSession.startRunning();
     }
     
-    func getData() {
-        
-    }
-    
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -101,10 +93,36 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
         //dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func addDataToFirebase(code: String) {
+        let firebaseRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)")
+        let firebaseCountRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)/count")
+        
+        firebaseCountRef.runTransactionBlock({
+            (currentData:FMutableData!) in
+            var value = currentData.value as? Int
+            if (value == nil) {
+                value = 0
+            }
+            currentData.value = value! + 1
+            return FTransactionResult.successWithValue(currentData)
+        })
+        
+        getUPCInfo(code)
+        
+    }
+    
+    func getUPCInfo(code: String) {
+        
+    }
+    
     func foundCode(code: String) {
+        let code = String(code.characters.dropFirst())
+        
         if Int(code) != lastReadValue {
             lastReadValue = Int(code)!
             print(code)
+            
+            addDataToFirebase(code)
             
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
