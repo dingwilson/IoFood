@@ -13,7 +13,6 @@
 		C854EB171CA7035B00C7080F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C854EB151CA7035B00C7080F /* LaunchScreen.storyboard */; };
 		C854EB221CA7035B00C7080F /* IoFoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB211CA7035B00C7080F /* IoFoodTests.swift */; };
 		C854EB2D1CA7035B00C7080F /* IoFoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB2C1CA7035B00C7080F /* IoFoodUITests.swift */; };
-		C854EB3B1CA7183800C7080F /* DiscoveredBarCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB3A1CA7183800C7080F /* DiscoveredBarCodeView.swift */; };
 		C854EB3D1CA7192A00C7080F /* BarCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB3C1CA7192A00C7080F /* BarCodeScannerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +46,6 @@
 		C854EB281CA7035B00C7080F /* IoFoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoFoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C854EB2C1CA7035B00C7080F /* IoFoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoFoodUITests.swift; sourceTree = "<group>"; };
 		C854EB2E1CA7035B00C7080F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C854EB3A1CA7183800C7080F /* DiscoveredBarCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredBarCodeView.swift; sourceTree = "<group>"; };
 		C854EB3C1CA7192A00C7080F /* BarCodeScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCodeScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +100,6 @@
 				C854EB0A1CA7035B00C7080F /* AppDelegate.swift */,
 				C854EB101CA7035B00C7080F /* Main.storyboard */,
 				C854EB3C1CA7192A00C7080F /* BarCodeScannerView.swift */,
-				C854EB3A1CA7183800C7080F /* DiscoveredBarCodeView.swift */,
 				C854EB131CA7035B00C7080F /* Assets.xcassets */,
 				C854EB151CA7035B00C7080F /* LaunchScreen.storyboard */,
 				C854EB181CA7035B00C7080F /* Info.plist */,
@@ -262,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C854EB3B1CA7183800C7080F /* DiscoveredBarCodeView.swift in Sources */,
 				C854EB3D1CA7192A00C7080F /* BarCodeScannerView.swift in Sources */,
 				C854EB0B1CA7035B00C7080F /* AppDelegate.swift in Sources */,
 			);
