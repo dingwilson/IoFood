@@ -8,15 +8,20 @@
 
 import AVFoundation
 import UIKit
+import Firebase
 
 class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
+    var firebaseRef = Firebase(url:"https://iofood.firebaseio.com/items")
+    
     var lastReadValue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getData()
         
         view.backgroundColor = UIColor.blackColor()
         captureSession = AVCaptureSession()
@@ -55,6 +60,10 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
         view.layer.addSublayer(previewLayer);
         
         captureSession.startRunning();
+    }
+    
+    func getData() {
+        
     }
     
     func failed() {
