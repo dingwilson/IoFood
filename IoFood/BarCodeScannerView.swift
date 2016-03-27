@@ -9,6 +9,7 @@
 import AVFoundation
 import UIKit
 import Firebase
+import Alamofire
 
 class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
@@ -82,37 +83,44 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
-        //captureSession.stopRunning()
-        
         if let metadataObject = metadataObjects.first {
             let readableObject = metadataObject as! AVMetadataMachineReadableCodeObject;
             
             foundCode(readableObject.stringValue);
         }
-        
-        //dismissViewControllerAnimated(true, completion: nil)
     }
     
     func addDataToFirebase(code: String) {
-        let firebaseRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)")
-        let firebaseCountRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)/count")
+        let firebaseRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)/count")
         
-        firebaseCountRef.runTransactionBlock({
+        firebaseRef.runTransactionBlock({
             (currentData:FMutableData!) in
             var value = currentData.value as? Int
             if (value == nil) {
                 value = 0
+                self.doRequest(code)
             }
             currentData.value = value! + 1
             return FTransactionResult.successWithValue(currentData)
         })
-        
-        getUPCInfo(code)
-        
     }
     
-    func getUPCInfo(code: String) {
-        
+    func doRequest(upc_input: String){
+        let url = "http://inoutfood.herokuapp.com/update/\(upc_input)"
+        print(url)
+        Alamofire.request(.GET, url).validate().responseJSON { response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    
+                    print("Updated")
+                    //                    print(json[0]["imageurl"])
+                    //                    print("JSON: \(json)")
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
     }
     
     func foundCode(code: String) {

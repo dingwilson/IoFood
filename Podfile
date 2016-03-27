@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'IoFood' do
 pod 'Firebase'
+pod 'Alamofire'
 end
 
 target 'IoFoodTests' do
