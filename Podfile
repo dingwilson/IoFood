@@ -6,7 +6,6 @@ use_frameworks!
 target 'IoFood' do
 pod 'Firebase'
 pod 'Alamofire'
-pod 'GPUImage'
 end
 
 target 'IoFoodTests' do

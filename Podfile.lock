@@ -1,16 +1,13 @@
 PODS:
   - Alamofire (3.3.0)
   - Firebase (2.5.1)
-  - GPUImage (0.1.7)
 
 DEPENDENCIES:
   - Alamofire
   - Firebase
-  - GPUImage
 
 SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
-  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
 
 COCOAPODS: 0.39.0

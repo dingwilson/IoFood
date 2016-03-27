@@ -10,13 +10,14 @@ import AVFoundation
 import UIKit
 import Firebase
 import Alamofire
-import GPUImage
 
 class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
     var lastReadValue = 0
+    var lastReadTime: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,7 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+
         if let metadataObject = metadataObjects.first {
             let readableObject = metadataObject as! AVMetadataMachineReadableCodeObject;
             
@@ -113,14 +115,49 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
     }
     
+    func time() -> Double {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month, .Hour, .Minute, .Second], fromDate: date)
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minutes = components.minute
+        let seconds = components.second
+        let digitHour = String(format: "%02d", hour) // returns "01"
+        let digitMinute = String(format: "%02d", minutes) // returns "01"
+        let digitDay = String(format: "%02d", day) // returns "01"
+        let digitMonth = String(format: "%02d", month) // returns "01"
+        let digitSecond = String(format: "%02d", seconds) // returns "01"
+        
+        let currentTime : Double = Double(digitMonth + digitDay + digitHour + digitMinute + digitSecond)!
+        
+        print(currentTime)
+        
+        return currentTime
+    }
+    
     func foundCode(code: String) {
         let code = String(code.characters.dropFirst())
         
-        if Int(code) != lastReadValue {
+        if time() != lastReadTime {
             lastReadValue = Int(code)!
+            lastReadTime = time()
             print(code)
             
-            let quantity = "1"
+            let quantity = "-1"
+            
+            addDataToFirebase(code, quantity: quantity)
+            
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        
+        else if Int(code) != lastReadValue {
+            lastReadValue = Int(code)!
+            lastReadTime = time()
+            print(code)
+            
+            let quantity = "-1"
             
             addDataToFirebase(code, quantity: quantity)
             
