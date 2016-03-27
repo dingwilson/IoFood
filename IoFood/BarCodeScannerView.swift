@@ -90,36 +90,25 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
     }
     
-    func addDataToFirebase(code: String) {
-        let firebaseRef = Firebase(url:"https://iofood.firebaseio.com/Items/\(code)/count")
+    func addDataToFirebase(upc: String, quantity: String){
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month, .Hour, .Minute, .Second], fromDate: date)
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minutes = components.minute
+        let seconds = components.second
+        let digitHour = String(format: "%02d", hour) // returns "01"
+        let digitMinute = String(format: "%02d", minutes) // returns "01"
+        let digitDay = String(format: "%02d", day) // returns "01"
+        let digitMonth = String(format: "%02d", month) // returns "01"
+        let digitSecond = String(format: "%02d", seconds) // returns "01"
         
-        firebaseRef.runTransactionBlock({
-            (currentData:FMutableData!) in
-            var value = currentData.value as? Int
-            if (value == nil) {
-                value = 0
-                self.doRequest(code)
-            }
-            currentData.value = value! + 1
-            return FTransactionResult.successWithValue(currentData)
-        })
-    }
-    
-    func doRequest(upc_input: String){
-        let url = "http://inoutfood.herokuapp.com/update/\(upc_input)"
+        let currentString :String = upc + "&" + quantity + "&2016" + digitMonth + digitDay + "&" + digitHour + digitMinute + digitSecond
+        let url = "http://inoutfood.herokuapp.com/update/\(currentString)"
         print(url)
-        Alamofire.request(.GET, url).validate().responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    
-                    print("Updated")
-                    //                    print(json[0]["imageurl"])
-                    //                    print("JSON: \(json)")
-                }
-            case .Failure(let error):
-                print(error)
-            }
+        Alamofire.request(.GET, url).validate().responseJSON {_ in
         }
     }
     
@@ -130,7 +119,9 @@ class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelega
             lastReadValue = Int(code)!
             print(code)
             
-            addDataToFirebase(code)
+            let quantity = "1"
+            
+            addDataToFirebase(code, quantity: quantity)
             
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         }

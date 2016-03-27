@@ -17,19 +17,15 @@ class FoodViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var foodArray = Array<Food>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.getData()
-        
-        self.foodTableView.reloadData()
-
-        /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.getData()
             dispatch_async(dispatch_get_main_queue()) {
                 self.foodTableView.reloadData()
             }
-        }*/
+        }
     }
     
     func getData() {
@@ -40,7 +36,45 @@ class FoodViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let food = Food(name: name, count: count, imageURL: imageURL)
             
-            self.foodArray.append(food)
+            var flag = false
+            
+            if !self.foodArray.isEmpty {
+                for i in 0...self.foodArray.count-1 {
+                    if self.foodArray[i].name() == food.name() {
+                        self.foodArray[i].count_ == food.count()
+                        flag = true
+                    }
+                }
+            }
+
+            if flag == false {
+                self.foodArray.append(food)
+            }
+            
+            self.foodTableView.reloadData()
+        })
+        
+        firebaseRef.observeEventType(FEventType.ChildChanged, withBlock: { snapshot in
+            let name = snapshot.value["name"] as! String
+            let count = snapshot.value["count"] as! Int
+            let imageURL = snapshot.value["imageURL"] as! String
+            
+            let food = Food(name: name, count: count, imageURL: imageURL)
+            
+            var flag = false
+            
+            if !self.foodArray.isEmpty {
+                for i in 0...self.foodArray.count-1 {
+                    if self.foodArray[i].name() == food.name() {
+                        self.foodArray[i].count_ == food.count()
+                        flag = true
+                    }
+                }
+            }
+            
+            if flag == false {
+                self.foodArray.append(food)
+            }
             
             self.foodTableView.reloadData()
         })

@@ -14,9 +14,11 @@
 		C854EB221CA7035B00C7080F /* IoFoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB211CA7035B00C7080F /* IoFoodTests.swift */; };
 		C854EB2D1CA7035B00C7080F /* IoFoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB2C1CA7035B00C7080F /* IoFoodUITests.swift */; };
 		C854EB3D1CA7192A00C7080F /* BarCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854EB3C1CA7192A00C7080F /* BarCodeScannerView.swift */; };
+		C865482D1CA7B4FA0054A362 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865482C1CA7B4FA0054A362 /* MapViewController.swift */; };
 		C8864A181CA73BF0000B7988 /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864A171CA73BF0000B7988 /* FoodViewController.swift */; };
 		C8864A1A1CA73DB5000B7988 /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864A191CA73DB5000B7988 /* FoodTableViewCell.swift */; };
 		C8864A1C1CA73E93000B7988 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864A1B1CA73E93000B7988 /* Food.swift */; };
+		C8FED91A1CA7C1B4005759D9 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FED9191CA7C1B4005759D9 /* MainTabBarViewController.swift */; };
 		D9C3DCD17FA2E8CDDADE76E0 /* Pods_IoFood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394FDDC424C1D7E61EEE17A2 /* Pods_IoFood.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,9 +55,11 @@
 		C854EB2C1CA7035B00C7080F /* IoFoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoFoodUITests.swift; sourceTree = "<group>"; };
 		C854EB2E1CA7035B00C7080F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C854EB3C1CA7192A00C7080F /* BarCodeScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCodeScannerView.swift; sourceTree = "<group>"; };
+		C865482C1CA7B4FA0054A362 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C8864A171CA73BF0000B7988 /* FoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		C8864A191CA73DB5000B7988 /* FoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableViewCell.swift; sourceTree = "<group>"; };
 		C8864A1B1CA73E93000B7988 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		C8FED9191CA7C1B4005759D9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		F950B50885A64B95AE499F0A /* Pods-IoFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IoFood/Pods-IoFood.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,8 @@
 			children = (
 				C854EB0A1CA7035B00C7080F /* AppDelegate.swift */,
 				C854EB101CA7035B00C7080F /* Main.storyboard */,
+				C8FED9191CA7C1B4005759D9 /* MainTabBarViewController.swift */,
+				C865482C1CA7B4FA0054A362 /* MapViewController.swift */,
 				C8864A171CA73BF0000B7988 /* FoodViewController.swift */,
 				C8864A1B1CA73E93000B7988 /* Food.swift */,
 				C8864A191CA73DB5000B7988 /* FoodTableViewCell.swift */,
@@ -344,7 +350,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C854EB3D1CA7192A00C7080F /* BarCodeScannerView.swift in Sources */,
+				C865482D1CA7B4FA0054A362 /* MapViewController.swift in Sources */,
 				C8864A1A1CA73DB5000B7988 /* FoodTableViewCell.swift in Sources */,
+				C8FED91A1CA7C1B4005759D9 /* MainTabBarViewController.swift in Sources */,
 				C8864A181CA73BF0000B7988 /* FoodViewController.swift in Sources */,
 				C854EB0B1CA7035B00C7080F /* AppDelegate.swift in Sources */,
 				C8864A1C1CA73E93000B7988 /* Food.swift in Sources */,
