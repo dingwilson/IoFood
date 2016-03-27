@@ -10,6 +10,7 @@ import AVFoundation
 import UIKit
 import Firebase
 import Alamofire
+import GPUImage
 
 class BarCodeScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
