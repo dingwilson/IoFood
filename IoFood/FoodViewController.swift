@@ -51,7 +51,9 @@ class FoodViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.foodArray.append(food)
             }
             
-            self.foodTableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(),{
+                self.foodTableView.reloadData()
+            });
         })
         
         firebaseRef.observeEventType(FEventType.ChildChanged, withBlock: { snapshot in
@@ -76,7 +78,9 @@ class FoodViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.foodArray.append(food)
             }
             
-            self.foodTableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(),{
+                self.foodTableView.reloadData()
+            });
         })
     }
 

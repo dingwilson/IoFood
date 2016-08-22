@@ -68,7 +68,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func showNearby() {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "supermarkets in richardson"
+        request.naturalLanguageQuery = "supermarkets near Richardson"
         request.region = map.region
         let search = MKLocalSearch(request: request)
         search.startWithCompletionHandler{
